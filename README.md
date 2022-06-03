@@ -1,24 +1,25 @@
-# README
+# Local Development
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+If you run into any issues please contact me.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- [Docker](https://docs.docker.com/engine/install/)
+- [Docker compose](https://docs.docker.com/compose/install/)
 
-* System dependencies
+## Inital setup
 
-* Configuration
+- Open the project directory
+- Build the docker image
+  - `docker compose build`
+- If you need to run any command inside the container
+  - `docker compose run --rm web rails db:create` # to create a database
+  - `docker compose run --rm web bundle install` # to install ruby gems
+  - `docker compose run --rm web yarn` # to update javascript deps
 
-* Database creation
+## Spin up the project
 
-* Database initialization
+- Run docker image
+  - `docker compose up`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+_It will automatically listen to any changes in the code (css, javascript included)_
