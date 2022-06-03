@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: rails
+    build: .
+    tty: true
+    command: ./bin/dev
+    volumes:
+        - .:/app
+        - volume-bundle:/usr/local/bundle
+        - volume-nodemodules:/app/node_modules
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      PORT: 3000
+      DB_HOST: postgres
+      DB_USERNAME: railsapp
+      DB_PASSWORD: railsapp
+
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    volumes: 
+      - volume-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: railsapp
+      POSTGRES_PASSWORD: railsapp
+    ports: 
+      - '5432:5432'
+
+volumes:
+  volume-db:
+  volume-bundle:
+  volume-nodemodules:
